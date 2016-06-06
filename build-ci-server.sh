@@ -19,6 +19,10 @@ sudo openssl req \
     -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=ci-demo.servicenow.com" \
     -keyout /etc/nginx/cert.key \
     -out /etc/nginx/cert.crt
+JKEY=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
+echo Please browse to https://YOUR_INSTANCE_IP/ and enter the initial admin password below:
+echo INITIAL ADMIN PASSWORD = $JKEY
+
 #sudo mkdir /usr/local/share/ca-certificates/docker-dev-cert
 #sudo cp /etc/nginx/ci-demo.crt /usr/local/share/ca-certificates/docker-dev-cert
 #sudo update-ca-certificates
