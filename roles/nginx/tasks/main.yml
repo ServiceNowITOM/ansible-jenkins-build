@@ -1,0 +1,7 @@
+    - name: install nginx on ubuntu
+      apt: name=nginx update_cache=no force=yes state=latest
+      when: ansible_pkg_mgr == 'apt'
+
+    - name: install nginx on centos
+      yum: name=nginx state=latest
+      when: ansible_pkg_mgr == 'yum'
