@@ -1,0 +1,7 @@
+---
+- name: Configure CI server
+  hosts: all
+  gather_facts: yes
+  sudo: True
+  roles: - git
+	 - nginx

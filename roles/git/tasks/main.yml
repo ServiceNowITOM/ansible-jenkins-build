@@ -1,0 +1,8 @@
+---
+    - name: install git on ubuntu if not already installed
+      apt: name=git state=present
+      when: ansible_pkg_mgr == 'apt'
+
+    - name: install git on centos if not already installed
+      yum: name=git state=present
+      when: ansible_pkg_mgr == 'yum'
