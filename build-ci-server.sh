@@ -10,7 +10,7 @@ git clone --recursive https://github.com/amittell/ansible-jenkins-build
 cd ansible-jenkins-build
 export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
 /usr/bin/ansible-playbook configure-ci-server.yml --extra-vars "variable_host=localhost" -i "localhost," --connection=local
-sudo openssl req \
+[ -e /etc/nginx/cert.crt ] || sudo openssl req \
     -new \
     -newkey rsa:4096 \
     -days 3650 \
@@ -20,8 +20,10 @@ sudo openssl req \
     -keyout /etc/nginx/cert.key \
     -out /etc/nginx/cert.crt
 JKEY=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
-echo Please browse to https://YOUR_INSTANCE_IP/ and enter the initial admin password below:
+echo Please browse to https://YOUR_INSTANCE_IP/ and enter the initial admin password below.
+echo ======================================================================================
 echo INITIAL ADMIN PASSWORD = $JKEY
+echo ======================================================================================
 
 #sudo mkdir /usr/local/share/ca-certificates/docker-dev-cert
 #sudo cp /etc/nginx/ci-demo.crt /usr/local/share/ca-certificates/docker-dev-cert
