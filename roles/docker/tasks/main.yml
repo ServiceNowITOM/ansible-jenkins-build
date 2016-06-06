@@ -1,0 +1,46 @@
+    - name: add docker apt key
+      apt_key:
+        keyserver: hkp://p80.pool.sks-keyservers.net:80
+        id: 58118E89F3A912897C070ADBF76221572C52609D
+
+    - name: add docker apt repository
+      apt_repository:
+        repo: deb https://apt.dockerproject.org/repo ubuntu-trusty main
+        update_cache: yes
+
+    # For Ubuntu Trusty, Vivid, and Wily, it’s recommended to install the linux-image-
+    # extra kernel package. The linux-image-extra package allows you use the aufs
+    # storage driver.
+    # https://docs.docker.com/engine/userguide/storagedriver/aufs-driver/
+
+    # had to run manually
+    # - name: allow use of aufs storage driver
+    #   shell: apt-get install linux-image-extra-$(uname -r)
+
+    - name: uninstall old docker
+      apt:
+        name: lxc-docker
+        purge: yes
+      failed_when: no
+
+    - name: install docker
+      apt:
+        name: docker-engine
+
+    - name: add ubuntu to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+
+    - name: add teamcity to docker group
+      user:
+        name: teamcity
+        groups: docker
+        append: yes
+
+    - name: get docker compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.5.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 0755
