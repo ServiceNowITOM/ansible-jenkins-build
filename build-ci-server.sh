@@ -1,9 +1,10 @@
 #!/bin/bash
 sudo apt-get update
-sudo apt-get -y install git
+[ -e /usr/bin/git ] || sudo apt-get -y install git
+[ -e /usr/bin/git ] || exit 1
 sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt-get update
-sudo apt-get -y install ansible
+[ -e /usr/bin/ansible ] || sudo apt-get -y install ansible
 cd ~
 git clone https://github.com/amittell/ansible-jenkins-build
 export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
