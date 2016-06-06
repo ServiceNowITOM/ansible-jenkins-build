@@ -10,4 +10,16 @@ git clone --recursive https://github.com/amittell/ansible-jenkins-build
 cd ansible-jenkins-build
 export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
 /usr/bin/ansible-playbook configure-ci-server.yml --extra-vars "variable_host=localhost" -i "localhost," --connection=local
+openssl req \
+    -new \
+    -newkey rsa:4096 \
+    -days 3650 \
+    -nodes \
+    -x509 \
+    -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=ci-demo.servicenow.com" \
+    -keyout /etc/nginx/cert.key \
+    -out /etc/nginx/cert.crt
+#sudo mkdir /usr/local/share/ca-certificates/docker-dev-cert
+#sudo cp /etc/nginx/ci-demo.crt /usr/local/share/ca-certificates/docker-dev-cert
+#sudo update-ca-certificates
 # configure-jenkins.sh
