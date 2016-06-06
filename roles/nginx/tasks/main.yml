@@ -7,6 +7,6 @@
       when: ansible_pkg_mgr == 'yum'
     
     - name: Configure nginx
-      template: src=nginx.conf dest=/etc/nginx/sites-available/default
+      template: src=roles/nginx/config/nginx.conf dest=/etc/nginx/sites-available/default
       notify:
         - restart nginx

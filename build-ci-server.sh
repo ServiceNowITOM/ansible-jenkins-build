@@ -10,7 +10,7 @@ git clone --recursive https://github.com/amittell/ansible-jenkins-build
 cd ansible-jenkins-build
 export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
 /usr/bin/ansible-playbook configure-ci-server.yml --extra-vars "variable_host=localhost" -i "localhost," --connection=local
-openssl req \
+sudo openssl req \
     -new \
     -newkey rsa:4096 \
     -days 3650 \
