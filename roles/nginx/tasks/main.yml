@@ -5,3 +5,8 @@
     - name: install nginx on centos
       yum: name=nginx state=latest
       when: ansible_pkg_mgr == 'yum'
+    
+    - name: Configure nginx
+      template: src=nginx.conf dest=/etc/nginx/sites-available/default
+      notify:
+        - restart nginx
