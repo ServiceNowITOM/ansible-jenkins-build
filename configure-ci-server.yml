@@ -3,5 +3,7 @@
   hosts: all
   gather_facts: yes
   sudo: True
-  roles: - git
-	 - nginx
+  roles: 
+     - git
+     - nginx
+     - jenkins
