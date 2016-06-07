@@ -9,7 +9,7 @@ cd ~
 git clone --recursive https://github.com/amittell/ansible-jenkins-build
 cd ansible-jenkins-build
 export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
-/usr/bin/ansible-playbook configure-ci-server.yml --extra-vars "variable_host=localhost" -i "localhost," --connection=local
+[ -d /etc/nginx ] || mkdir /etc/nginx
 [ -e /etc/nginx/cert.crt ] || sudo openssl req \
     -new \
     -newkey rsa:4096 \
@@ -19,6 +19,7 @@ export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
     -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=ci-demo.servicenow.com" \
     -keyout /etc/nginx/cert.key \
     -out /etc/nginx/cert.crt
+/usr/bin/ansible-playbook configure-ci-server.yml --extra-vars "variable_host=localhost" -i "localhost," --connection=local
 JKEY=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 echo Please browse to https://YOUR_INSTANCE_IP/ and enter the initial admin password below.
 echo ======================================================================================
