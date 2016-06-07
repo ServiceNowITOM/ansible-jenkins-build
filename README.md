@@ -8,4 +8,4 @@ Installation:
 
 SSH into your server and run the following command. 
 
-wget https://raw.githubusercontent.com/amittell/ansible-jenkins-build/master/build-ci-server.sh; chmod build-ci-server.sh; ./build-ci-server.sh
+wget https://raw.githubusercontent.com/amittell/ansible-jenkins-build/master/build-ci-server.sh; chmod u+x build-ci-server.sh; ./build-ci-server.sh
