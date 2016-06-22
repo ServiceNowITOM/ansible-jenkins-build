@@ -10,7 +10,7 @@ cd ~
 git clone --recursive https://github.com/amittell/ansible-jenkins-build
 cd ansible-jenkins-build
 export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
-[ -d /etc/nginx ] || mkdir /etc/nginx
+[ -d /etc/nginx ] || sudo mkdir /etc/nginx
 [ -e /etc/nginx/cert.crt ] || sudo openssl req \
     -new \
     -newkey rsa:4096 \
