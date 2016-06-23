@@ -22,6 +22,8 @@ export _JAVA_OPTIONS="-Djava.net.prefer.IPv4Stack=true"
     -out /etc/nginx/cert.crt
 /usr/bin/ansible-playbook configure-ci-server.yml --extra-vars "variable_host=localhost" -i "localhost," --connection=local
 sudo usermod -aG docker jenkins
+sudo service docker restart
+sudo service jenkins restart
 JKEY=`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
 echo Please browse to https://YOUR_INSTANCE_IP/ and enter the initial admin password below.
 echo ======================================================================================

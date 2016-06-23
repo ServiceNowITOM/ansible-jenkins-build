@@ -21,8 +21,8 @@
     notify: restart jenkins
     when: ansible_pkg_mgr == 'yum'
 
-  - name: Restart nginx
+  - name: restart nginx
     service: name=nginx state=restarted
 
-  - name: Restart Jenkins
+  - name: restart Jenkins
     service: name=jenkins state=restarted
