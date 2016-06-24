@@ -1,5 +1,5 @@
 #!/bin/bash
-grep `hostname` /etc/hosts || sed -i "/^127.*/ s/$/ `hostname`/" /etc/hosts
+sudo grep `hostname` /etc/hosts || sed -i "/^127.*/ s/$/ `hostname`/" /etc/hosts
 sudo apt-get update
 [ -e /usr/bin/git ] || sudo apt-get -y install git
 [ -e /usr/bin/git ] || exit 1
